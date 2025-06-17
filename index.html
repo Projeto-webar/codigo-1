@@ -3,167 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Código do Form 1</title>
-  <style>
-    body {
-      text-align: center;
-      background-color: #ffcc8e;
-      font-family: Helvetica, sans-serif;
-      -webkit-user-select: none;
-      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-      touch-action: manipulation;
-    }
-
-    .button {
-      position: relative;
-      display: inline-block;
-      margin: 20px;
-    }
-
-    .button a {
-      color: white;
-      font-weight: bold;
-      font-size: 36px;
-      text-align: center;
-      text-decoration: none;
-      background-color: #FFA12B;
-      display: block;
-      position: relative;
-      padding: 20px 40px;
-      cursor: pointer;
-      text-shadow: 0px 1px 0px #000;
-      box-shadow: inset 0 1px 0 #FFE5C4, 0 10px 0 #915100;
-      border-radius: 5px;
-      transition: top 0.1s ease;
-    }
-
-    .button a:active {
-      top: 10px;
-      background-color: #F78900;
-      box-shadow: inset 0 1px 0 #FFE5C4, inset 0 -3px 0 #915100;
-    }
-
-    .button:after {
-      content: "";
-      height: 100%;
-      width: 100%;
-      padding: 4px;
-      position: absolute;
-      bottom: -15px;
-      left: -4px;
-      z-index: -1;
-      background-color: #2B1800;
-      border-radius: 5px;
-    }
-
-    .section {
-      background: rgba(99, 99, 99, 0.616);
-      max-width: 90%;
-      margin: auto;
-      border: 1px solid;
-      border-radius: 10px;
-    }
-
-    .content {
-      margin: 5%;
-    }
-
-    h1, h3, p {
-      color: white;
-    }
-
-    .codigo {
-      word-break: break-all;
-    }
-
-    .toast {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background-color: #333;
-      color: #fff;
-      padding: 12px 20px;
-      border-radius: 8px;
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      z-index: 1000;
-    }
-
-    .toast.show {
-      opacity: 1;
-    }
-
-    @media screen and (max-width: 600px) {
-      .button a {
-        font-size: 24px;
-        padding: 15px 30px;
-      }
-
-      .section {
-        max-width: 95%;
-      }
-
-      .toast {
-        left: 10px;
-        right: 10px;
-        top: auto;
-        bottom: 20px;
-        text-align: center;
-      }
-    }
-  </style>
+  <title>Código do Form</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <div class="section">
     <div class="content">
-      <h1 class="titulo">Seu código</h1>
-      <h3 class="informe">Copie o código e cole no formulário 1</h3>
-      <p id="codigoid" class="codigo">M8Bgb6qZDx2jH?-2(7-1B95M}Jn_45=O+M1</p>
+      <h1>Seu código</h1>
+      <h3>Copie o código e cole no formulário</h3>
+      <p id="codigoid">M8Bgb6qZDx2jH?-2(7-1B95M}Jn_45=O+M1</p>
 
       <div class="button">
-        <a href="javascript:void(0)" onclick="copyToClickBoard()">Copiar</a>
+        <a href="javascript:void(0)">Copiar</a>
       </div>
     </div>
   </div>
 
   <div id="toast" class="toast">Código copiado!</div>
-
-  <!-- Áudio do clique -->
   <audio id="clickSound" src="clique.mp3" preload="auto"></audio>
 
-  <script>
-    function copyToClickBoard() {
-      const content = document.getElementById('codigoid').innerText;
-
-      // Copia o texto
-      navigator.clipboard.writeText(content)
-        .then(() => {
-          showToast();
-          playClickSound();
-        })
-        .catch(err => {
-          console.error('Erro ao copiar: ', err);
-        });
-    }
-
-    function showToast() {
-      const toast = document.getElementById('toast');
-      toast.classList.add('show');
-      setTimeout(() => {
-        toast.classList.remove('show');
-      }, 2000);
-    }
-
-    function playClickSound() {
-      const sound = document.getElementById('clickSound');
-      sound.currentTime = 0;
-      sound.play().catch(err => console.warn("Som bloqueado até interação do usuário."));
-    }
-
-    // Garante que o :active funcione no iOS
-    document.addEventListener("touchstart", function () {}, true);
-  </script>
-
+  <script type="module" src="firebase-config.js"></script>
+  <script type="module" src="script.js"></script>
 </body>
 </html>
